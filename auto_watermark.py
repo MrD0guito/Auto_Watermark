@@ -1,9 +1,9 @@
 from PIL import Image
 import os
 
-caminho_original = "C:/Users/mrdog/Desktop/Eu/programas/clubedoscu/watermark_add/"
-caminho_destino = "C:/Users/mrdog/Desktop/Eu/programas/clubedoscu/output_watermark/"
-marca_dagua = "C:/Users/mrdog/Desktop/Eu/programas/clubedoscu/watermark.png"
+caminho_original = "watermark_add/"
+caminho_destino = "output_watermark/"
+marca_dagua = "watermark.png"
 
 def adicionar_marca_dagua(imagem_original, marca_dagua, caminho_destino):
     try:
@@ -15,7 +15,7 @@ def adicionar_marca_dagua(imagem_original, marca_dagua, caminho_destino):
 
         margem_percentual = 0.05  # 5% da largura e altura da imagem
 
-        nova_largura_marca = int(largura * 0.3)  # 40% da largura da imagem
+        nova_largura_marca = int(largura * 0.2)  # 20% da largura da imagem
         proporcao = nova_largura_marca / marca_largura
         nova_altura_marca = int(marca_altura * proporcao)
         marca_redimensionada = marca.resize((nova_largura_marca, nova_altura_marca), resample=Image.Resampling.LANCZOS)
@@ -38,6 +38,6 @@ arquivos = os.listdir(caminho_original)
 
 # Itera sobre os arquivos e adiciona a marca d'água
 for arquivo in arquivos:
-    if arquivo.endswith(".jpeg") or arquivo.endswith(".png"):
+    if arquivo.endswith(".jpg") or arquivo.endswith(".webp") or arquivo.endswith(".jpeg") or arquivo.endswith(".png"):
         imagem_original = caminho_original + arquivo
         adicionar_marca_dagua(imagem_original, marca_dagua, caminho_destino)
